@@ -2,16 +2,32 @@
   "name": "testing",
   "version": "0.1.0",
   "private": true,
+  "main": "./public/electron.js",
+  "homepage": "./",
   "dependencies": {
+    "axios": "^0.18.0",
+    "concurrently": "^4.1.0",
+    "electron-is-dev": "^1.0.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
+    "moxios": "^0.4.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-promise": "^0.6.0",
+    "wait-on": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-concurrently": "concurrently \"react-scripts start\" \"wait-on http://localhost:3000 && electron-start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "preelectron-pack": "npm run build",
+    "electron-pack": "build",
+    "electron-start": "electron ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +37,16 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "electron": "^4.0.6",
+    "electron-builder": "^20.38.5",
+    "react-scripts": "2.1.5"
+  },
+  "build": {
+    "appId": "nonExistentID",
+    "files": [
+      "build/**/*"
+    ]
+  }
 }
